@@ -9,6 +9,7 @@
 #include "myclass.h"
 #include "qmlproperty.h"
 #include "httprequest.h"
+#include <QQmlContext>
 
 int main(int argc, char *argv[])
 {
@@ -25,6 +26,11 @@ int main(int argc, char *argv[])
 //    qmlRegisterType<QmlProperty>("com.qmltestref.qmlproperty",1,0,"QmlProperty");
 
     QQmlApplicationEngine engine;
+    //set QML context property to pass data to qml
+    auto offlineStoragePath = QUrl::fromLocalFile(engine.offlineStoragePath());
+    QQmlContext *context = new QQmlContext(engine.rootContext());
+    engine.rootContext()->setContextProperty("offlineStoragePath", offlineStoragePath);
+    //loads qml
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;

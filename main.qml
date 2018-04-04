@@ -16,6 +16,8 @@ ApplicationWindow {
         return "some return value"
     }
 
+    property color mainTextCOlor: "green"
+
     QmlProperty {
         id: qmlProperty
         text: "QML signal and Property"
@@ -28,6 +30,7 @@ ApplicationWindow {
 
         Page1Form {
             ColumnLayout {
+                id: page1Column
                 width: parent.width
                 spacing: 2
 
@@ -61,6 +64,12 @@ ApplicationWindow {
                         onClicked: item.qmlSignal("Hello from QML")
                     }
                 }
+            }
+
+            Text {
+                text: offlineStoragePath
+                anchors.top: page1Column.bottom
+                color: mainTextColor
             }
 
             Button {
