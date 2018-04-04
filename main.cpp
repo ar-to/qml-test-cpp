@@ -8,10 +8,15 @@
 #include <QQmlProperty>
 #include "myclass.h"
 #include "qmlproperty.h"
+#include "httprequest.h"
 
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    //For use with QSettings
+    QCoreApplication::setOrganizationName("MySoft");
+    QCoreApplication::setOrganizationDomain("mysoft.com");
+    QCoreApplication::setApplicationName("Star Runner");
 
     QGuiApplication app(argc, argv);
 
@@ -23,17 +28,6 @@ int main(int argc, char *argv[])
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;
-
-    //using QQuickView -- not working due to file loaded
-//    QQuickView view;
-//    view.setSource(QUrl::fromLocalFile("Page1Form.ui.qml"));
-//    view.setSource(QUrl::fromLocalFile("main.qml"));
-//    view.show();
-//    QObject *object = view.rootObject();
-
-//    QObject *rect = object->findChild<QObject*>("rect");
-//    if (rect)
-//        rect->setProperty("color", "red");
 
     QObject *rootObject = engine.rootObjects().first();
     QObject *qmlObject = rootObject->findChild<QObject*>("swipeView");
@@ -63,6 +57,10 @@ int main(int argc, char *argv[])
     QObject::connect(page1Item,SIGNAL(qmlSignal(QString)),&myClass,SLOT(cppSlot(QString)));
     QObject::connect(page1Button1,SIGNAL(released()),&myClass,SLOT(handleButton1(page1Button1)));//did not work!!
 
+
+    //Request working
+//    HttpRequest httpRequest;
+//    httpRequest.newRequest("https://jsonplaceholder.typicode.com/posts/1");
 
     return app.exec();
 }

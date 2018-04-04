@@ -69,6 +69,25 @@ ApplicationWindow {
                 text: "Button"
                 onClicked: qmlProperty.changeText("Text Changed")
             }
+
+            Button {
+                y: 150
+                text: "Http Button"
+                objectName: "httpButton"
+                onClicked: qmlProperty.getRequest("https://jsonplaceholder.typicode.com/posts/2")
+            }
+
+            Button {
+                y: 200
+                text: "add Setting"
+                onClicked: qmlProperty.newSetting("setting1", 10)
+            }
+
+            Button {
+                y: 240
+                text: "get Setting"
+                onClicked: qmlProperty.getSetting("setting1")
+            }
         }
 
         Page2Form {
@@ -105,6 +124,10 @@ ApplicationWindow {
         Page3Form {
 
         }
+
+        Page4Form {
+
+        }
     }
 
     footer: TabBar {
@@ -119,6 +142,9 @@ ApplicationWindow {
         }
         TabButton {
             text: qsTr("Page 3")
+        }   
+        TabButton {
+            text: qsTr("Page 4")
         }
     }
 }

@@ -14,7 +14,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp \
     myclass.cpp \
-    qmlproperty.cpp
+    qmlproperty.cpp \
+    httprequest.cpp \
+    settings.cpp
 
 RESOURCES += qml.qrc
 
@@ -31,4 +33,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     myclass.h \
-    qmlproperty.h
+    qmlproperty.h \
+    httprequest.h \
+    settings.h

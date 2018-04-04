@@ -2,6 +2,7 @@
 #define QMLPROPERTY_H
 
 #include <QObject>
+#include <QVariant>
 
 class QmlProperty : public QObject
 {
@@ -28,6 +29,9 @@ signals:
 
 public slots:
     void changeText(const QString &text);
+    void getRequest(QString url);
+    void newSetting(QString keyname, QVariant value);
+    void getSetting(QString keyname);
 };
 
 #endif // QMLPROPERTY_H
