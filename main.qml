@@ -66,10 +66,39 @@ ApplicationWindow {
                 }
             }
 
-            Text {
-                text: offlineStoragePath
+            ColumnLayout {
+                width: parent.width
                 anchors.top: page1Column.bottom
-                color: mainTextColor
+                spacing: 15
+                Text {
+                    text: "offlineStoragePath: " + offlineStoragePath
+//                    anchors.top: page1Column.bottom
+                    color: mainTextColor
+                }
+
+                Text {
+                    text: "QStandardPaths: " + appDataLocation
+                }
+
+                Button {
+                    height: 10
+                    focus: true
+                    text: activeFocus ? "I have active focus!" : "I do not have active focus"
+                    Keys.onPressed: {
+                        if (event.key === Qt.Key_A) {
+                            console.log('Key A was pressed');
+                            event.accepted = true;
+                        }
+                    }
+                    background: Rectangle {
+                        implicitWidth: 100
+                        implicitHeight: 40
+                        color: button.down ? "#d6d6d6" : "#f6f6f6"
+                        border.color: "#26282a"
+                        border.width: 1
+                        radius: 4
+                    }
+                }
             }
 
             Button {
@@ -137,6 +166,10 @@ ApplicationWindow {
         Page4Form {
 
         }
+
+        Page5Form {
+
+        }
     }
 
     footer: TabBar {
@@ -154,6 +187,9 @@ ApplicationWindow {
         }   
         TabButton {
             text: qsTr("Page 4")
+        }
+        TabButton {
+            text: qsTr("Page 5")
         }
     }
 }

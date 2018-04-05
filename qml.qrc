@@ -8,5 +8,7 @@
         <file>Test.qml</file>
         <file>Page3Form.qml</file>
         <file>Page4Form.qml</file>
+        <file>Page5Form.qml</file>
+        <file>Page5ListModel.qml</file>
     </qresource>
 </RCC>

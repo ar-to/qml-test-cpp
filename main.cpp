@@ -10,6 +10,7 @@
 #include "qmlproperty.h"
 #include "httprequest.h"
 #include <QQmlContext>
+#include <QStandardPaths>
 
 int main(int argc, char *argv[])
 {
@@ -28,8 +29,12 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     //set QML context property to pass data to qml
     auto offlineStoragePath = QUrl::fromLocalFile(engine.offlineStoragePath());
-    QQmlContext *context = new QQmlContext(engine.rootContext());
+//    auto appDataLocation = QStandardPaths::AppDataLocation;//returns 17
+//    QString homeLocation = QStandardPaths::locate(QStandardPaths::HomeLocation, QString(), QStandardPaths::LocateDirectory);
+    auto appDataLocation = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+//    QQmlContext *context = new QQmlContext(engine.rootContext());//used as alt to engine.rootContext()
     engine.rootContext()->setContextProperty("offlineStoragePath", offlineStoragePath);
+    engine.rootContext()->setContextProperty("appDataLocation", appDataLocation);
     //loads qml
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty())
