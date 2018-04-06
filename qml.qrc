@@ -11,4 +11,7 @@
         <file>Page5Form.qml</file>
         <file>Page5ListModel.qml</file>
     </qresource>
+    <qresource prefix="/Test">
+        <file>Test.qml</file>
+    </qresource>
 </RCC>
